@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  hello-world:
+    env_file: .env
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - NODE_ENV
+      - DEBUG=custom:*
+    ports:
+      - "${HTTP_EXTERNAL_PORT}:3000"
+      - "9229:9229"
+    command: ["npm", "run", "start"]
